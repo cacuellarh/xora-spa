@@ -132,7 +132,7 @@
       {
         "id": 128,
         "iconPath": "/assets/icons/vino.png",
-        "name": "2 Copas de vino"
+        "name": "2 Copas de vino para cada uno"
       },
       {
         "id": 129,
@@ -167,7 +167,7 @@
       {
         "id": 135,
         "iconPath": "/assets/icons/cena.png",
-        "name": "Cena romantica"
+        "name": "Almuerzo o Cena romantica"
       },
       {
         "id": 136,
@@ -227,7 +227,7 @@
       {
         "id": 145,
         "iconPath": "/assets/icons/masaje.png",
-        "name": "Refeloxología"
+        "name": "Reflexología"
       },
       {
         "id": 146,
@@ -273,5 +273,15 @@
         "id": 154,
         "iconPath": "/assets/icons/coctel_aceites.png",
         "name": "Coctel de 15 aceites"
+      },
+      {
+        "id": 155,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico de rosas facial"
+      },
+      {
+        "id": 156,
+        "iconPath": "/assets/icons/sales.png",
+        "name": "Cañas de corozo"
       }
 ]
