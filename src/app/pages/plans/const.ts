@@ -1,1 +1,1 @@
-export const whatsappMsgDefault : string = "https://api.whatsapp.com/send/?phone=573209416091&text=Hola+Xora+Spa.+Necesito+m%C3%A1s+informaci%C3%B3n+sobre+Somos+Laurel+Spa+Medellin+Colombia&type=phone_number&app_absent=0";
+export const whatsappMsgDefault : string = "https://api.whatsapp.com/send/?phone=573209416091&text=Hola+Xora+Spa.+Necesito+m%C3%A1s+informaci%C3%B3n+sobre+Somos+Laurel+Spa+Bucaramanga+Colombia&type=phone_number&app_absent=0";
