@@ -13,7 +13,13 @@ export const routes: Routes = [
         (m) => m.PoliciesComponent
       ),
   },
-
+  {
+    path: 'galeria',
+    loadComponent: () =>
+      import('../app/pages/galery/galery.component').then(
+        (m) => m.GaleryComponent
+      ),
+  },
   {
     path: 'planes',
     loadComponent: () =>
