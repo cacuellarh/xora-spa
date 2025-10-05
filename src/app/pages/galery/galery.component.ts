@@ -16,9 +16,9 @@ export class GaleryComponent {
   constructor() {
     // Configuración de las imágenes de la galería
     for (let i = 1; i <= 18; i++) {
-      const src = `assets/images/galery/${i}.jpeg`;
+      const src = `assets/images/galery/${i}.jpg`;
       const caption = `Imagen ${i}`;
-      const thumb = `assets/images/galery/${i}.jpeg`;
+      const thumb = `assets/images/galery/${i}.jpg`;
       const album = { src, caption, thumb };
       this.albums.push(album);
     }
