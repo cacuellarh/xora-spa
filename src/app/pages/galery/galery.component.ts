@@ -14,7 +14,7 @@ export class GaleryComponent {
   public selected: number | null = null; // índice de la imagen abierta
 
   constructor() {
-    // Configuración de las imágenes de la galería
+    // Configuración de las imágenes de la galerías
     for (let i = 1; i <= 55; i++) {
       const src = `assets/images/galery/${i}.JPG`;
       const caption = `Imagen ${i}`;
