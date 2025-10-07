@@ -15,7 +15,7 @@ export class GaleryComponent {
 
   constructor() {
     // Configuración de las imágenes de la galerías
-    for (let i = 1; i <= 55; i++) {
+    for (let i = 1; i <= 45; i++) {
       const src = `assets/images/galery/${i}.JPG`;
       const caption = `Imagen ${i}`;
       const thumb = `assets/images/galery/${i}.JPG`;
