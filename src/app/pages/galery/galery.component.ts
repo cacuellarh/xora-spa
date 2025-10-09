@@ -15,7 +15,7 @@ export class GaleryComponent {
 
   constructor() {
     // Configuración de las imágenes de la galerías
-    for (let i = 1; i <= 37; i++) {
+    for (let i = 1; i <= 33; i++) {
       const src = `assets/images/galery/${i}.webp`;
       const caption = `Imagen ${i}`;
       const thumb = `assets/images/galery/${i}.webp`;
