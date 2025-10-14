@@ -283,5 +283,9 @@
         "id": 156,
         "iconPath": "/assets/icons/sales.png",
         "name": "Cañas de corozo"
+      },{
+        "id": 157,
+        "iconPath": "/assets/icons/vela.png",
+        "name": "Masaje con vela caliente"
       }
 ]
