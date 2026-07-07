@@ -11,4 +11,9 @@ import { RouterModule, RouterLink } from '@angular/router';
 })
 export class AppComponent {
   title = 'xora-spa';
+  showModal: boolean = true;
+
+  closeModal() {
+    this.showModal = false;
+  }
 }
