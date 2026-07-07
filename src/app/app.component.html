@@ -25,9 +25,9 @@
 </div>
 
 <div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" (click)="closeModal()">
-  <div class="bg-white rounded-lg p-4 max-w-3xl w-11/12" (click)="$event.stopPropagation()">
+  <div class="rounded-lg p-4 max-w-3xl w-11/12" (click)="$event.stopPropagation()">
     <div class="flex justify-end">
-      <button (click)="closeModal()" class="text-gray-500 hover:text-gray-800">Cerrar ✕</button>
+      <button (click)="closeModal()" class="text-white">Cerrar ✕</button>
     </div>
     <div class="pt-2">
       <img src="assets/images/ixorapop.jpeg" alt="Popup image" class="mx-auto max-w-full max-h-[70vh]" />

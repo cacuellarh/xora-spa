@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { InfoComponent } from "./components/info/info.component";
-import { RouterModule, RouterLink } from '@angular/router';
+import { InfoComponent } from './components/info/info.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, InfoComponent, RouterLink],
+  imports: [RouterOutlet, InfoComponent, RouterLink, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
