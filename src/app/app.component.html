@@ -1,38 +1,104 @@
-<nav class="w-screen shadow-xl fixed z-10">
-  <div class="flex w-full h-10 bg-primary px-10 lg:px-[20rem] justify-end items-center"> 
-      <ul class="flex gap-5">
-          <a href="https://www.instagram.com/ixoraspabga/" target="_blank"><img class="w-5 transition-all ease-in duration-150 hover:scale-110" src="assets/icons/ig.png" alt=""></a>
-          <a href="https://api.whatsapp.com/send/?phone=573209416091&text=Hola+Xora+Spa.+Necesito+m%C3%A1s+informaci%C3%B3n+sobre+Somos+Laurel+Spa+Medellin+Colombia&type=phone_number&app_absent=0" target="_blank"><img class="w-5 transition-all ease-in duration-150 hover:scale-110" src="assets/icons/wsp.png" alt=""></a>
-          <a href="https://www.tiktok.com/@ixoraspabga" target="_blank"><img class="w-5 transition-all ease-in duration-150 hover:scale-110" src="assets/icons/tik-tok.png" alt=""></a>
-          <a href="https://www.facebook.com/ixoraspabga/?locale=es_LA" target="_blank"><img class="w-5 transition-all ease-in duration-150 hover:scale-110" src="assets/icons/face.png" alt=""></a>
+<a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2">Saltar al contenido</a>
+
+<header class="fixed inset-x-0 top-0 z-40 bg-white shadow-md">
+  <!-- Barra superior: horario, WhatsApp y redes (escritorio) -->
+  <div class="hidden bg-primary_dark text-white lg:block">
+    <div class="mx-auto flex h-10 max-w-site items-center justify-between px-8 text-sm">
+      <p>{{ contact.hoursShort }}</p>
+      <div class="flex items-center gap-4">
+        <a [href]="whatsappUrl" target="_blank" rel="noopener" class="font-semibold hover:underline">
+          WhatsApp {{ contact.phones[0].label }}
+        </a>
+        <cc-social-links [links]="socialLinks" size="sm" tone="inverse" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra principal -->
+  <div class="mx-auto flex h-16 max-w-site items-center justify-between gap-4 px-4 lg:h-20 lg:px-8">
+    <a routerLink="/" class="flex items-center" (click)="closeMenu()">
+      <img src="assets/images/logo.png" alt="Ixora Spa Bucaramanga - inicio" width="251" height="97" class="h-10 w-auto lg:h-14" />
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Principal">
+      <ul class="flex items-center gap-8">
+        @for (link of navLinks; track link.label) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              [fragment]="link.fragment"
+              routerLinkActive="text-secondary_text underline decoration-2 underline-offset-8"
+              [routerLinkActiveOptions]="link.exact ? exactMatch : prefixMatch"
+              class="font-semibold text-primary_dark transition-colors hover:text-secondary_text"
+            >{{ link.label }}</a>
+          </li>
+        }
       </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a ccButton size="sm" [href]="whatsappUrl" target="_blank" rel="noopener">Reservar</a>
+      <button
+        type="button"
+        class="flex h-11 w-11 items-center justify-center rounded-full text-primary_dark hover:bg-bg lg:hidden"
+        aria-controls="menu-movil"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+        (click)="toggleMenu()"
+      >
+        @if (menuOpen()) {
+          <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        } @else {
+          <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        }
+      </button>
+    </div>
   </div>
 
-  <div class="flex px-10 lg:px-[20rem] justify-center lg:justify-between items-center py-[1rem] bg-white">
-    <a href="" class="hidden lg:block"><img src="assets/images/logo.png" alt=""></a>
-    <ul class="flex gap-5">
-      <li><a class="text-primary font-light lg:text-[1.5rem]" href="">HOME</a></li>
-      <li><a class="text-primary font-light lg:text-[1.5rem]" routerLink="/planes" href="">PLANES</a></li>
-      <li><a class="text-primary font-light lg:text-[1.5rem]" routerLink="/politicas">POLITICAS</a></li>
-      <li><a class="text-primary font-light lg:text-[1.5rem]" routerLink="/galeria">GALERIA</a></li>
-    </ul>
-  </div>
-</nav>
+  <!-- Menú móvil -->
+  @if (menuOpen()) {
+    <nav id="menu-movil" class="border-t border-stone bg-white lg:hidden" aria-label="Principal">
+      <ul class="flex flex-col px-4 py-2">
+        @for (link of navLinks; track link.label) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              [fragment]="link.fragment"
+              routerLinkActive="text-secondary_text"
+              [routerLinkActiveOptions]="link.exact ? exactMatch : prefixMatch"
+              class="block py-3 text-lg font-semibold text-primary_dark"
+              (click)="closeMenu()"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+      <div class="border-t border-stone px-4 py-3">
+        <a [href]="whatsappUrl" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center font-semibold text-primary_dark">WhatsApp {{ contact.phones[0].label }}</a>
+      </div>
+    </nav>
+  }
+</header>
 
-<div>
+<main id="contenido" class="pt-16 lg:pt-[7.5rem]">
   <router-outlet />
-  <app-info></app-info>
-</div>
+</main>
 
-<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" (click)="closeModal()">
-  <div class="rounded-lg p-4 max-w-3xl w-11/12" (click)="$event.stopPropagation()">
-    <div class="flex justify-end">
-      <button (click)="closeModal()" class="text-white">Cerrar ✕</button>
-    </div>
-    <div class="pt-2">
-      <img src="assets/images/pop.jpeg" alt="Popup image" class="mx-auto max-w-full max-h-[70vh]" />
-    </div>
-  </div>
-</div>
+<app-site-footer />
 
+@if (showFloatingWhatsapp()) {
+  <cc-whatsapp-button [href]="whatsappUrl" label="Escríbenos por WhatsApp" />
+}
 
+@if (promo; as promo) {
+  <!-- Popup de promoción: se abre a los 6 s y no vuelve a aparecer en 7 días si se cierra. -->
+  <cc-promo-modal
+    [autoOpen]="true"
+    [delayMs]="6000"
+    [rememberKey]="promo.rememberKey"
+    [imageSrc]="promo.imageSrc"
+    [imageAlt]="promo.imageAlt"
+    [link]="promo.whatsappUrl"
+    ctaLabel="Quiero esta promoción"
+    [ctaHref]="promo.whatsappUrl"
+  />
+}

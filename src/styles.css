@@ -1,8 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * Identidad de Ixora Spa. Este archivo es la única fuente de colores y tipografía del sitio:
+ * tailwind.config.js y los componentes de @c-code/c-code-fw/ui leen estas variables.
+ * La escala de tamaños, espaciado y radios viene de la librería (tokens.css, en angular.json).
+ */
+:root {
+    /* Paleta de marca */
+    --xora-teal: #66928b;
+    --xora-teal-light: #a7d7cf;
+    --xora-teal-dark: #43615c; /* 6,8:1 sobre blanco */
+    --xora-teal-darker: #2f4642;
+    --xora-teal-mist: #eef6f4;
+    --xora-pink: #dda0a0;
+    --xora-pink-hover: #cf8b8b;
+    --xora-rose: #9e7676;
+    --xora-rose-text: #8a5a5a; /* rosa legible como texto: 5,7:1 sobre blanco */
+    --xora-cocoa: #3b2626; /* texto sobre el rosa: 6,4:1 */
+    --xora-ink: #4f4242;
+    --xora-blush: #fff0f0;
+    --xora-white: #ffffff;
+    --xora-stone: #eadede;
+    --xora-stone-strong: #8a8480;
+
+    /* Tipografía de marca */
+    --xora-font-body: 'Albert Sans', sans-serif;
+    --xora-font-heading: 'Quicksand', 'Albert Sans', sans-serif;
+
+    /* Roles que leen los componentes de la librería */
+    --cc-canvas: var(--xora-white);
+    --cc-surface: var(--xora-blush);
+    --cc-surface-alt: var(--xora-teal-mist);
+    --cc-text: var(--xora-ink);
+    --cc-heading: var(--xora-teal-dark);
+    --cc-accent: var(--xora-pink);
+    --cc-accent-hover: var(--xora-pink-hover);
+    --cc-accent-text: var(--xora-rose-text);
+    --cc-on-accent: var(--xora-cocoa);
+    --cc-inverse: var(--xora-teal-dark);
+    --cc-inverse-hover: var(--xora-teal-darker);
+    --cc-on-inverse: var(--xora-white);
+    --cc-border: var(--xora-stone);
+    --cc-border-strong: var(--xora-stone-strong);
+    --cc-focus-ring: var(--xora-teal-darker);
+    --cc-font-body: var(--xora-font-body);
+    --cc-font-heading: var(--xora-font-heading);
+    --cc-radius: 1rem;
+    --cc-btn-radius: 0.75rem;
+}
+
 html {
     scroll-behavior: smooth;
-    font-family: 'Albert Sans', sans-serif;
+    scroll-padding-top: 6rem;
+    font-family: var(--xora-font-body);
+    color: var(--xora-ink);
+}
+body {
+    background: var(--xora-white);
+}
+h1, h2, h3 {
+    font-family: var(--xora-font-heading);
+}
+:focus-visible {
+    outline: 2px solid var(--cc-focus-ring);
+    outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }

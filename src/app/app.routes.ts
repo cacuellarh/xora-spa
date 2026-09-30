@@ -34,8 +34,10 @@ export const routes: Routes = [
             (p) => p.PlanListComponent
           ),
       },
+      // La antigua página de detalle sin nombre de plan: ahora cada plan tiene su URL.
+      { path: 'detalles', redirectTo: '', pathMatch: 'full' },
       {
-        path: 'detalles',
+        path: ':slug',
         loadComponent: () =>
           import(
             '../app/pages/plans/pages/plan-details/plan-details.component'
@@ -43,4 +45,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];

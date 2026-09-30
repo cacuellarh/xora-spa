@@ -1,55 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>IXoraSpa</title>
+  <title>Ixora Spa Bucaramanga</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="Mf4t7iJAaDgZQ1QbatkLC7zxCfj8KlV6tQZ-lE5C0tg" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#43615c">
 
-  <!-- ...existing code... -->
-
-  <!-- Recommended SEO meta -->
-  <meta name="description" content="IXoraSpa - Centro de bienestar y spa en [CIUDAD]. Ofrecemos tratamientos faciales, masajes y paquetes de relajación para tu bienestar. Reserva ahora.">
-  <meta name="keywords" content="spa, bienestar, masajes, tratamientos faciales, IXoraSpa, relajación, [CIUDAD]">
-  <meta name="author" content="IXoraSpa">
+  <!-- Valores por defecto; cada página los reemplaza con SeoService (título, descripción, canonical, Open Graph). -->
+  <meta name="description" content="Ixora Spa en Bucaramanga: planes para parejas, individuales y grupos con piscina de hidromasaje, jacuzzi con espuma y masajes. Reserva por WhatsApp.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="[https://ixoraspabucaramanga.com/]">
-
-  <!-- Open Graph (mejor compartir en redes) -->
-  <meta property="og:title" content="IXoraSpa — Bienestar y Relax">
-  <meta property="og:description" content="Relájate con nuestros masajes y tratamientos exclusivos en IXoraSpa. Reserva online y vive la experiencia.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="[https://ixoraspabucaramanga.com/]">
-
-
-  <!-- Twitter Card -->
+  <meta property="og:site_name" content="Ixora Spa Bucaramanga">
+  <meta property="og:locale" content="es_CO">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="IXoraSpa — Bienestar y Relax">
-  <meta name="twitter:description" content="Relájate con nuestros masajes y tratamientos exclusivos en IXoraSpa.">
 
+  <!-- Datos del negocio para buscadores. Mantener sincronizado con src/app/site.config.ts. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Spa",
-    "name": "IXoraSpa",
-    "url": "[https://www.tusitio.com/]",
-    "logo": "[https://www.tusitio.com/assets/logo.png]",
-    "description": "IXoraSpa - Centro de bienestar y spa en [CIUDAD]. Ofrecemos tratamientos faciales, masajes y paquetes de relajación.",
-    "sameAs": [
-      "[https://www.facebook.com/tu-pagina]",
-      "[https://www.instagram.com/tu-cuenta]"
-    ],
+    "@type": "DaySpa",
+    "@id": "https://ixoraspabucaramanga.com/#spa",
+    "name": "Ixora Spa Bucaramanga",
+    "url": "https://ixoraspabucaramanga.com/",
+    "logo": "https://ixoraspabucaramanga.com/assets/images/logo.png",
+    "image": "https://ixoraspabucaramanga.com/assets/images/galery/17.webp",
+    "description": "Spa en Bucaramanga con planes para parejas, individuales y grupos: piscina de hidromasaje, jacuzzi con espuma, masajes y rituales.",
+    "telephone": "+573209416091",
+    "email": "Ixorasparelajacion@gmail.com",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "[CIUDAD]",
-      "addressCountry": "[PAIS]"
-    }
+      "streetAddress": "Calle 59 # 32-18, Barrio Conucos",
+      "addressLocality": "Bucaramanga",
+      "addressRegion": "Santander",
+      "addressCountry": "CO"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "08:00",
+        "closes": "21:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/ixoraspabga/",
+      "https://www.facebook.com/ixoraspabga/",
+      "https://www.tiktok.com/@ixoraspabga"
+    ]
   }
   </script>
-
-  <!-- ...existing code... -->
 </head>
 <body class="overflow-x-hidden">
   <app-root></app-root>

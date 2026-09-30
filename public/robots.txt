@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ixoraspabucaramanga.com/sitemap.xml

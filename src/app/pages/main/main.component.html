@@ -1,232 +1,146 @@
-<div class="w-full lg:h-[10rem]"></div>
-
-<!-- MAIN -->
-<div
-  class="bg-[url('assets/images/bg_main.png')] bg-cover bg-center w-full h-[60rem] lg:h-[55rem] flex flex-col lg:flex-row justify-between items-start lg:py-[8rem] gap-10 lg:px-[20rem] px-10 pt-[10rem]"
->
-  <div
-    class="flex flex-col gap-3 bg-primary_dark/70 rounded-2xl p-5 lg:p-10 w-full lg:w-[30%]"
-  >
-    <h1 class="text-orange-200 font-bold text-[1.6rem]">IXORA SPA</h1>
-
-    <h2 class="text-white font-semibold text-[1.2rem] italic">
-      Un refugio de calma donde tu cuerpo y mente encuentran equilibrio.
-    </h2>
-
-    <h2 class="text-orange-200 text-[1.6rem] mt-10">Planes desde $79.900</h2>
+<!-- HERO: el texto va sobre el arco verde que trae la foto, así no tapa a nadie -->
+<section class="relative isolate bg-primary">
+  <img src="assets/images/bg_main.webp" alt="Pareja brindando en el jacuzzi de Ixora Spa Bucaramanga" fetchpriority="high"
+       width="1920" height="1080" class="block aspect-video w-full object-cover lg:absolute lg:inset-0 lg:-z-10 lg:h-full lg:aspect-auto" />
+  <div class="mx-auto flex max-w-site flex-col items-center gap-4 px-4 pb-12 pt-2 text-center text-white lg:min-h-[52rem] lg:justify-end lg:gap-5 lg:px-8 lg:pb-14">
+    <p class="rounded-full bg-white/15 px-4 py-1 text-sm font-semibold uppercase tracking-wide lg:hidden">Ixora Spa · Bucaramanga</p>
+    <h1 class="max-w-2xl font-heading text-4xl font-bold">Un refugio de calma en Bucaramanga</h1>
+    <p class="max-w-xl text-xl font-bold">Hidromasaje, jacuzzi con espuma y masajes para ti, en pareja o en grupo.</p>
+    @if (fromPrice()) {
+      <p class="rounded-full bg-white px-5 py-1 text-lg font-bold text-primary_dark">Planes desde {{ fromPrice() }}</p>
+    }
+    <div class="flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+      <a ccButton size="lg" class="whitespace-nowrap" routerLink="/planes" [queryParams]="coupleQuery">Ver planes para pareja</a>
+      <a ccButton size="lg" variant="whatsapp" class="whitespace-nowrap" [href]="whatsappUrl" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+    </div>
   </div>
-
-  <form action="" class="flex flex-col gap-5 shadow-2xl p-10 rounded-xl bg-bg">
-    <label for="" class="italic"
-      >Estamos aquí para ayudarte a encontrar la experiencia de relajación
-      ideal.</label
-    >
-    <div class="flex flex-col gap-3">
-      <label class="text-primary_dark text-[1.3rem] font-semibold" for=""
-        >Nombre completo*</label
-      >
-      <input class="rounded-full border border-primary h-10 px-3" type="text" />
-    </div>
-
-    <div class="flex flex-col gap-3">
-      <label class="text-primary_dark text-[1.3rem] font-semibold" for=""
-        >Correo*</label
-      >
-      <input class="rounded-full border border-primary h-10 px-3" type="text" />
-    </div>
-
-    <div class="flex flex-col gap-3">
-      <label class="text-primary_dark text-[1.3rem] font-semibold" for=""
-        >Celular*</label
-      >
-      <input class="rounded-full border border-primary h-10 px-3" type="text" />
-    </div>
-
-    <button
-      class="lg>w-40 h-12 px-5 py-2 text-bg bg-primary shadow-lg rounded-xl mt-5 transition-all ease-in duration-150 hover:bg-primary_dark"
-    >
-      Enviar
-    </button>
-  </form>
-</div>
+</section>
 
 <!-- PLANES -->
-
-<div
-  class="bg-primary px-10 lg:px-[20rem] flex flex-col gap-16 items-center h-[110rem] lg:h-[50rem] justify-center"
->
-  <div class="flex flex-col gap-3 lg:w-[50%] items-center">
-    <h1 class="text-secondary font-bold text-[1.5rem]">Nuestros Planes</h1>
-    <p class="text-bg text-center">
-      En IXORA Spa ofrecemos planes de bienestar para cada estilo de vida, con
-      masajes, terapias y cuidados que renuevan tu energía. Elige el tuyo y vive
-      una experiencia única de calma y equilibrio.
+<section class="bg-primary">
+  <div class="mx-auto max-w-site px-4 pb-16 pt-4 lg:px-8 lg:pb-24">
+    <cc-section-heading title="Nuestros planes" tone="inverse" align="center" />
+    <!-- Texto grande y en negrita: sobre el verde del arco cumple el contraste de texto grande (3:1). -->
+    <p class="mx-auto -mt-4 mb-10 max-w-2xl text-center text-xl font-bold text-white">
+      Planes de bienestar para cada estilo de vida, con masajes, terapias y cuidados que renuevan tu energía.
     </p>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      @for (card of categoryCards(); track card.category) {
+        <li>
+          <cc-plan-card
+            headingLevel="h3"
+            appearance="outlined"
+            [name]="card.title"
+            [imageSrc]="card.imageSrc"
+            [imageAlt]="'Plan de spa ' + card.title.toLowerCase()"
+            [meta]="card.meta"
+            [price]="card.minPrice"
+            priceLabel="Desde"
+            [link]="['/planes']"
+            [queryParams]="card.queryParams"
+            [ctaLabel]="'Ver planes ' + card.title.toLowerCase()"
+          />
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- PREGUNTAS FRECUENTES -->
+<section class="mx-auto grid max-w-site gap-12 px-4 py-16 lg:grid-cols-[2fr_3fr] lg:px-8 lg:py-24">
+  <div>
+    <cc-section-heading title="Spa en Bucaramanga" />
+    <div class="flex max-w-prose flex-col gap-4 text-ink">
+      <p>
+        En Ixora Spa creamos experiencias de relajación para disfrutar solo, en pareja o en grupo: piscina de
+        hidromasaje, jacuzzi con espuma, masajes, chocolaterapia y rituales, con decoración especial para
+        cumpleaños, aniversarios, despedidas y cualquier celebración.
+      </p>
+      <p>
+        Estamos en {{ contact.address }} y atendemos todos los días, incluidos festivos, de 8:00 a. m. a
+        9:00 p. m. Reserva tu plan por WhatsApp.
+      </p>
+    </div>
   </div>
 
-  <div class="w-full flex justify-between lg:flex-row flex-col gap-20 lg:gap-0">
-    <div
-      class="lg:w-[20rem] h-[24rem] bg-bg relative flex flex-col gap-5 justify-center items-center rounded-xl shadow-2xl"
-    >
-      <div
-        class="bg-secondary w-[10rem] py-1 rounded-lg absolute top-[-4%] flex justify-center"
-      >
-        <h2 class="text-bg">Individual</h2>
+  <cc-faq title="Preguntas frecuentes">
+    <cc-faq-item question="¿Cuál es el horario de atención?">
+      Atendemos de lunes a domingo, incluidos festivos, de 8:00 a. m. a 9:00 p. m.
+    </cc-faq-item>
+    <cc-faq-item question="¿Dónde queda Ixora Spa?">
+      En la {{ contact.address }}, Santander, Colombia.
+    </cc-faq-item>
+    <cc-faq-item question="¿Cómo hago una reserva?">
+      Escríbenos por WhatsApp al {{ contact.phones[0].label }}. Te recomendamos reservar con anticipación y llegar 15 minutos antes de tu cita.
+    </cc-faq-item>
+    <cc-faq-item question="¿Qué planes tienen?">
+      Tenemos planes individuales, para parejas y grupales. Mira lo que incluye cada uno, su duración y su precio en <a routerLink="/planes">planes</a>.
+    </cc-faq-item>
+    <cc-faq-item question="¿Qué medios de pago aceptan?">
+      Bancolombia, Nequi, Daviplata y efectivo.
+    </cc-faq-item>
+    <cc-faq-item question="¿Puedo cancelar o cambiar la fecha de mi cita?">
+      Sí, avisando con mínimo 24 horas de anticipación. El reagendamiento se hace entre semana, de lunes a jueves entre 8:00 a. m. y 3:00 p. m. Consulta todas las condiciones en nuestras <a routerLink="/politicas">políticas de reserva</a>.
+    </cc-faq-item>
+    <cc-faq-item question="¿Tienen bonos de regalo?">
+      Sí. Puedes pedir tu bono spa por WhatsApp; tiene una vigencia de 30 días a partir de su pago.
+    </cc-faq-item>
+  </cc-faq>
+</section>
+
+<!-- HORARIOS Y REDES -->
+<section id="horarios" class="relative isolate overflow-hidden">
+  <img src="assets/images/horario.webp" alt="" loading="lazy" width="1920" height="705" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+  <div class="absolute inset-0 -z-10 bg-[color-mix(in_srgb,var(--xora-teal-darker)_55%,transparent)]"></div>
+  <div class="mx-auto flex max-w-site flex-col gap-10 px-4 py-16 lg:px-8 lg:py-24">
+    <div class="flex overflow-hidden rounded-card shadow-xl">
+      <div class="flex w-24 flex-none items-center justify-center bg-primary_dark lg:w-40">
+        <img src="assets/icons/reloj.png" alt="" width="80" height="80" class="h-12 w-12 lg:h-20 lg:w-20" />
       </div>
-      <img src="assets/images/plan1.png" alt="" class="w-40" />
-      <h2>Planes desde:</h2>
-      <h1><span class="text-primary font-semibold">$</span>79.000 COP</h1>
-      <a
-        class="w-40 h-10 px-5 py-2 text-bg text-center bg-secondary shadow-lg rounded-xl mt-2 transition-all ease-in duration-150 hover:bg-secondary_dark cursor-pointer"
-        routerLink="/planes"
-      >
-        Reservar
-      </a>
-    </div>
-
-    <div
-      class="lg:w-[20rem] h-[24rem] bg-bg relative flex flex-col gap-5 justify-center items-center rounded-xl shadow-2xl"
-    >
-      <div
-        class="bg-secondary w-[10rem] py-1 rounded-lg absolute top-[-4%] flex justify-center"
-      >
-        <h2 class="text-bg">Pareja</h2>
-      </div>
-      <img src="assets/images/plan2.png" alt="" class="w-40" />
-
-      <h2>Planes desde:</h2>
-      <h1><span class="text-primary font-semibold">$</span>119.900COP</h1>
-      <a
-        class="w-40 h-10 px-5 py-2 text-bg bg-secondary shadow-lg rounded-xl mt-2 transition-all ease-in duration-150 hover:bg-secondary_dark text-center cursor-pointer"
-        routerLink="/planes"
-      >
-        Reservar
-      </a>
-    </div>
-
-    <div
-      class="lg:w-[20rem] h-[24rem] bg-bg relative flex flex-col gap-5 justify-center items-center rounded-xl shadow-2xl"
-    >
-      <div
-        class="bg-secondary w-[10rem] py-1 rounded-lg absolute top-[-4%] flex justify-center"
-      >
-        <h2 class="text-bg">Grupal</h2>
-      </div>
-      <img src="assets/images/plan3.png" alt="" class="w-40" />
-
-      <h2>Planes desde:</h2>
-      <h1><span class="text-primary font-semibold">$</span>259.900 COP</h1>
-      <a
-        class="w-40 h-10 px-5 py-2 text-bg bg-secondary shadow-lg rounded-xl mt-2 transition-all ease-in duration-150 hover:bg-secondary_dark text-center cursor-pointer"
-        routerLink="/planes"
-      >
-        Reservar
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- HORARIOS -->
-<div class="h-[47rem] bg-bg flex flex-col pt-20 justify-between">
-  <!-- BG-HORARIO -->
-  <div
-    class="w-full h-[70%] bg-[url('assets/images/horario.png')] bg-cover bg-center px-10 lg:px-[20rem] flex flex-col justify-center gap-10 py-10"
-  >
-    <div class="flex justify-center w-full h-[7rem] lg:h-[8rem]">
-      <div
-        class="bg-primary w-[25%] lg:w-[20%] flex items-center justify-center"
-      >
-        <img src="assets/icons/reloj.png" class="w-12 lg:w-[5rem]" alt="" />
-      </div>
-      <div class="bg-secondary w-[80%] lg:w-[80%]">
-        <div
-          class="flex gap-10 justify-center lg:justify-around w-full h-full items-center px-5"
-        >
-          <h1 class="text-bg font-semibold text-[0.9rem] lg:text-[1.2rem]">
-            HORARIOS
-          </h1>
-
-          <div class="flex flex-col">
-            <h6 class="text-bg text-[0.7rem] lg:text-[1.2rem]">
-              LUNES A DOMINGOS Y FESTIVOS
-            </h6>
-            <H6 class="text-bg text-[0.7rem] lg:text-[1.2rem] font-semibold"
-              >08:00 AM - 9:00PM</H6
-            >
-          </div>
+      <div class="flex flex-1 flex-col justify-center gap-1 bg-secondary px-6 py-6 text-cocoa lg:flex-row lg:items-center lg:justify-between lg:px-10">
+        <h2 class="font-heading text-2xl font-bold">Horarios</h2>
+        <div>
+          <p class="text-lg">Lunes a domingo y festivos</p>
+          <p class="text-2xl font-bold">8:00 a. m. – 9:00 p. m.</p>
         </div>
       </div>
     </div>
 
-    <h1 class="text-white font-bold text-[1.2rem] lg:text-[1.7rem]">
-      Nuestras redes sociales:
-    </h1>
-
-    <div class="flex w-full gap-5 lg:justify-between flex-col lg:flex-row">
-      <div class="flex gap-6">
-        <a href="https://www.facebook.com/ixoraspabga/?locale=es_LA" target="_blank"><img src="assets/icons/face.png" alt="" class="w-12 lg:w-16 transition-all ease-in hover:scale-125 cursor-pointer" /></a>
-        <a href="https://www.instagram.com/ixoraspabga/" target="_blank"><img src="assets/icons/ig.png" alt="" class="w-12 lg:w-16 transition-all ease-in hover:scale-125 cursor-pointer" /></a>
-        <a href="https://www.tiktok.com/@ixoraspabga" target="_blank"><img src="assets/icons/tik-tok.png" alt="" class="w-12 lg:w-16 transition-all ease-in hover:scale-125 cursor-pointer" /></a>
+    <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div class="flex flex-col gap-3">
+        <h2 class="font-heading text-2xl font-bold text-white lg:text-3xl">Síguenos en redes</h2>
+        <cc-social-links [links]="socialLinks" size="lg" tone="inverse" />
       </div>
-
-      <button
-        class="w-40 h-10 px-5 py-2 text-bg bg-secondary shadow-lg rounded-xl mt-2 transition-all ease-in duration-150 hover:bg-secondary_dark"
-      >
-        VER GALERIA
-      </button>
+      <a ccButton size="lg" routerLink="/galeria">Ver galería de fotos</a>
     </div>
   </div>
+</section>
 
-  <div class="bg-primary w-full h-[19%] px-10 lg:px-[20rem] flex items-center">
-    <h1 class="text-bg italic text-[1.3rem] lg:text-[1.7rem]">
-      Relájate, renueva tu energía y déjate cuidar
-    </h1>
-  </div>
-</div>
+<section class="bg-primary_dark">
+  <p class="mx-auto max-w-site px-4 py-10 font-heading text-2xl italic text-white lg:px-8 lg:text-3xl">
+    Relájate, renueva tu energía y déjate cuidar
+  </p>
+</section>
 
-<!-- CONTACTO -->
-<div class="w-screen h-[47rem] bg-white pt-16 flex justify-between flex-col">
-  <div class="relative">
-    <div
-      class="bg-secondary w-[20rem] py-2 rounded-lg absolute top-[-4%] flex justify-center right-10"
-    >
-      <h2 class="text-bg font-bold">UBICACION</h2>
+<!-- UBICACIÓN -->
+<section id="ubicacion" class="mx-auto grid max-w-site gap-8 px-4 py-16 lg:grid-cols-[1fr_2fr] lg:px-8 lg:py-24">
+  <div class="flex flex-col gap-4">
+    <cc-section-heading title="Ubicación" />
+    <address class="text-lg not-italic text-ink">{{ contact.address }}</address>
+    <p class="text-ink">{{ contact.hours }}</p>
+    <div class="flex flex-wrap gap-3">
+      <a ccButton [href]="contact.mapsUrl" target="_blank" rel="noopener">Cómo llegar</a>
+      <a ccButton variant="secondary" [href]="whatsappUrl" target="_blank" rel="noopener">Escríbenos</a>
     </div>
+  </div>
+  <div class="aspect-[4/3] w-full overflow-hidden rounded-card bg-bg lg:aspect-auto lg:min-h-[28rem]">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6641.632761115904!2d-73.11482339671586!3d7.107818664216748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e683fe8300a33b1%3A0x1f2709e93e3fe626!2sCl.%2059%20%23%2032-18%2C%20Sotomayor%2C%20Bucaramanga%2C%20Santander!5e1!3m2!1ses-419!2sco!4v1759535608994!5m2!1ses-419!2sco"
-      class="w-full h-[30rem]"
-      style="border: 0"
+      title="Mapa de ubicación de Ixora Spa Bucaramanga"
+      class="h-full w-full border-0"
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
   </div>
-
-  <div class="w-full h-[10rem] bg-bg px-10">
-    <br />
-
-    <div class="lg:px-[10rem] flex items-center gap-16 lg:gap-20">
-      <img src="assets/images/logo.png" alt="" class="w-[5rem] lg:w-[15rem]" />
-      <div class="flex flex-col gap-3">
-        <div class="flex items-center gap-3">
-          <img src="assets/icons/whatsapp_dark.png" class="w-5" alt="" /><span
-            class="text-primary_dark text-[0.8rem] lg:text-[1rem]"
-            >3227476900</span
-          >
-        </div>
-        <div class="flex items-center gap-3">
-          <img src="assets/icons/whatsapp_dark.png" class="w-5" alt="" /><span
-            class="text-primary_dark text-[0.8rem] lg:text-[1rem]"
-            >3104948884</span
-          >
-        </div>
-        <div class="flex items-center gap-3">
-          <img src="assets/images/ubicacion.png" class="w-6" alt="" /><span
-            class="text-primary_dark text-[0.8rem] lg:text-[1rem]"
-            >Calle 59 # 32 - 18, Barrio Conucos. Bucaramanga, Colombia</span
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

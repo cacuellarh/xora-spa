@@ -1,20 +1,55 @@
-import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { InfoComponent } from './components/info/info.component';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { IsActiveMatchOptions, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter, map } from 'rxjs';
+import { ButtonComponent, PromoModalComponent, SocialLinksComponent, WhatsappButtonComponent } from '@c-code/c-code-fw/ui';
+import { SiteFooterComponent } from './components/site-footer/site-footer.component';
+import { NAV_LINKS } from './nav-links';
+import { CONTACT, PROMO, SOCIAL_LINKS, WHATSAPP_URL } from './site.config';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, InfoComponent, RouterLink, NgIf],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    ButtonComponent,
+    WhatsappButtonComponent,
+    PromoModalComponent,
+    SocialLinksComponent,
+    SiteFooterComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'xora-spa';
-  showModal: boolean = true;
+  readonly whatsappUrl = WHATSAPP_URL;
+  readonly contact = CONTACT;
+  readonly socialLinks = SOCIAL_LINKS;
+  readonly promo = PROMO;
+  readonly navLinks = NAV_LINKS;
+  readonly menuOpen = signal(false);
+  /** Inicio, Horarios y Ubicación comparten la ruta "/": se distinguen por el fragmento. */
+  readonly exactMatch: IsActiveMatchOptions = { paths: 'exact', fragment: 'exact', queryParams: 'ignored', matrixParams: 'ignored' };
+  readonly prefixMatch: IsActiveMatchOptions = { paths: 'subset', fragment: 'ignored', queryParams: 'ignored', matrixParams: 'ignored' };
 
-  closeModal() {
-    this.showModal = false;
+  private readonly router = inject(Router);
+  private readonly url = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects)
+    ),
+    { initialValue: this.router.url }
+  );
+
+  /** El detalle de plan tiene su propia barra de reserva; el botón flotante la taparía. */
+  readonly showFloatingWhatsapp = computed(() => !/^\/planes\/[^/?#]+/.test(this.url()));
+
+  toggleMenu() {
+    this.menuOpen.update((open) => !open);
+  }
+
+  closeMenu() {
+    this.menuOpen.set(false);
   }
 }
