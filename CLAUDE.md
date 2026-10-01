@@ -27,8 +27,10 @@ Marketing/catalog site for **Ixora Spa (Bucaramanga, Colombia)**, domain `https:
 - **/planes keeps the category in the URL** (`?categoria=individual|pareja|grupal`, see `pages/plans/category-slugs.ts`); without it, couples show. Plan details live at `/planes/<slug>` (slug from the plan name via `planSlug()`); unknown slugs redirect to `/planes`.
 - **SEO:** every page calls `SeoService.update()` (configured with `provideSeo()` in `app.config.ts`). Plan details add a per-plan `Service` JSON-LD. The business `DaySpa` JSON-LD is static in `src/index.html`; keep it in sync with `site.config.ts`. `provideHttpClient(withFetch())` is required so the prerender can read the JSON files.
 - **Prerendered routes are listed in `prerender-routes.txt`**, and `public/sitemap.xml` lists the same URLs. `npm run content` rewrites the plan entries (`/planes/<slug>`) of both from the CMS and keeps the other lines; add or remove the site's own pages (home, gallery…) by hand.
-- **Contact data lives in `src/app/site.config.ts`:** `CONTACT` (phones, email, address, hours, maps link), `SOCIAL_LINKS`, `WHATSAPP_URL`, `planWhatsappUrl(plan)` and `PROMO` (set it to show the popup; `null` hides it).
-- Gallery photos: `assets/images/galery/<n>.webp` (full size, opened in the lightbox) and `galery/thumbs/<n>.webp` (600px, used in the grid). Add both when adding a photo, and a caption in `CAPTIONS` in `galery.component.ts`.
+- **Contact data lives in `src/app/site.config.ts`:** `CONTACT` (phones, email, address, hours, maps link), `SOCIAL_LINKS`, `WHATSAPP_PHONE`, `WHATSAPP_URL` and `planWhatsappUrl(plan)`.
+- **The promo popup and the gallery are edited in the CMS**, like the plans:
+  - `assets/data/promo.json` holds the popup: on/off, image, button, WhatsApp message, delay, repeat days and dates. `app.component` shows it only while `isPromoRunning()` says so, and uses `promoRememberKey()` from the library, so a new image or new dates show again to people who closed the old one.
+  - `assets/data/gallery.json` holds the gallery photos (`src`, `thumb`, `caption`), in order. Older photos live in `assets/images/galery/`; new ones come from the CMS image library (`/assets/cms/…`).
 
 ## Conventions / gotchas
 

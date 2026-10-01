@@ -38,14 +38,3 @@ export function planWhatsappUrl(plan: Plan): string {
   );
 }
 
-/**
- * Promoción del popup. Déjalo en `null` si no hay promoción activa.
- * Cambia `rememberKey` con cada promo para que se muestre a quien cerró la anterior.
- */
-export const PROMO: { imageSrc: string; imageAlt: string; rememberKey: string; whatsappUrl: string } | null = {
-  imageSrc: 'assets/images/pop.jpeg',
-  imageAlt:
-    'Promoción Amor y Amistad: Plan Chocolate y Borgoña por $129.900 para 2 personas, 90 minutos. Incluye piscina lúdica, sauna herbal, masaje terapéutico, ritual corporal y mascarilla facial de chocolate, copas de borgoña y decoración romántica.',
-  rememberKey: 'amor-amistad-chocolate-borgona',
-  whatsappUrl: whatsappUrl(WHATSAPP_PHONE, 'Hola Ixora Spa, quiero la promoción de Amor y Amistad del Plan Chocolate y Borgoña ($129.900).'),
-};
